@@ -1,0 +1,18 @@
+.app {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--mat-app-background-color);
+  }
+
+  &__main {
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex: 1 0 0;
+  }
+}

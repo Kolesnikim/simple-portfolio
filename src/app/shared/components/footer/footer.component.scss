@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+@import "../../../../styles";
+
+.app__footer {
+  height: 4rem;
+  padding: 0 2rem;
+  color: white;
+  background-color: mat.get-color-from-palette(mat.$teal-palette, 800);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+
+  @media screen and (max-width: 599px) {
+    span:last-child {
+      display: none;
+    }
+  }
+}
