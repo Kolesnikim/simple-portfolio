@@ -1,0 +1,16 @@
+<ngx-charts-area-chart
+  *ngIf="multi"
+  [results]="multi"
+  [showGridLines]="false"
+  [gradient]="true"
+  scheme="ocean"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [autoScale]="true"
+  [xAxisTickFormatting]="xAxisTickFormatting"
+  [yAxisTickFormatting]="yAxisTickFormatting"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [timeline]="false"
+  (select)="onSelect($event)">
+</ngx-charts-area-chart>

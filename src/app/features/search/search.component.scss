@@ -1,0 +1,25 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search-form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    --mat-form-field-leading-icon-color: var(--mdc-outlined-text-field-input-text-color);
+
+    mat-form-field {
+      width: 70%;
+      margin-right: 40px;
+    }
+  }
+
+  .mdc-button {
+    height: 100%;
+  }
+}

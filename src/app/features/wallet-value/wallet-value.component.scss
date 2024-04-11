@@ -1,0 +1,11 @@
+:host {
+  width: 70%;
+  height: 70%;
+
+  &::ng-deep .ngx-charts {
+    text{
+      fill: var(--mdc-outlined-text-field-input-text-color) !important;
+      stroke: var(--mdc-outlined-text-field-input-text-color) !important;
+    }
+  }
+}

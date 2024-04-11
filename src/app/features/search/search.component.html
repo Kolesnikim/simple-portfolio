@@ -1,0 +1,19 @@
+<form
+  class="search-form"
+  [formGroup]="searchForm"
+  (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <mat-icon matPrefix>search</mat-icon>
+
+    <input
+      matInput
+      formControlName="walletId"
+      placeholder="Search adress or domain" />
+  </mat-form-field>
+
+  <button
+    mat-fab
+    color="primary">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>

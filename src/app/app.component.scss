@@ -8,11 +8,11 @@
 
   &__main {
     margin: 50px auto;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 40px;
     flex: 1 0 0;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
@@ -7,11 +7,10 @@ import { MatToolbar } from '@angular/material/toolbar';
   styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [MatToolbar],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() title?: string;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

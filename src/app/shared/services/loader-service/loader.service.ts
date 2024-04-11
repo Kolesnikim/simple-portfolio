@@ -7,7 +7,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoaderService {
   private apiCount = 0;
 

@@ -27,11 +27,13 @@ export class AccessTokenInterceptor implements HttpInterceptor {
 
   private setHeaders(req: HttpRequest<unknown>): Headers {
     const headers: Headers = {};
-    const accessToken = this.storage.getItem('access_token');
 
-    if (accessToken) {
-      headers['x-token'] = `ApiKey="${accessToken.replace(/\s/g, '+')}"`;
-    }
+    headers['Authorization'] = `Bearer ${
+      req.url.includes('portfolio-api')
+        ? 'f5QhzNvgGZT1IzkGMX09ejtodHssh14vBoYgF1QW'
+        : 'nT4KcKlel3cSdKyYs3RAV5YkJuUFjfr0'
+    }`;
+
     return headers;
   }
 }
