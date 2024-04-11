@@ -3,9 +3,55 @@
   height: 70%;
 
   &::ng-deep .ngx-charts {
-    text{
-      fill: var(--mdc-outlined-text-field-input-text-color) !important;
-      stroke: var(--mdc-outlined-text-field-input-text-color) !important;
+    text {
+      fill: var(--mdc-outlined-text-field-input-text-color);
+    }
+
+    .tooltip-anchor {
+      fill: rgb(146, 146, 146);
+    }
+
+    .force-directed-graph {
+      .edge {
+        stroke: var(--mdc-outlined-text-field-input-text-color);
+      }
+    }
+
+    .number-card {
+      p {
+        color: var(--mdc-outlined-text-field-input-text-color);
+      }
+    }
+
+    .gauge {
+      .background-arc {
+        path {
+          fill: var(--mdc-outlined-text-field-input-text-color);
+        }
+      }
+
+      .gauge-tick {
+        path {
+          stroke: var(--mdc-outlined-text-field-input-text-color);
+        }
+
+        text {
+          fill: var(--mdc-outlined-text-field-input-text-color);
+        }
+      }
+    }
+
+    .linear-gauge {
+      .background-bar {
+        path {
+          fill: var(--mdc-outlined-text-field-input-text-color);
+        }
+      }
+
+      .units {
+        fill: var(--mdc-outlined-text-field-input-text-color);
+      }
     }
   }
 }
+
