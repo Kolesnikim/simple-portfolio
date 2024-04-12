@@ -1,56 +1,31 @@
 :host {
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
 
-  &::ng-deep .ngx-charts {
-    text {
-      fill: var(--mdc-outlined-text-field-input-text-color);
+  .mat-mdc-card {
+    padding: 30px 15px 10px;
+  }
+
+  .mat-mdc-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  .total-profit-and-loss {
+    color: var(--mdc-outlined-text-field-input-text-color);
+  }
+
+  @media screen and (max-width: 991px) {
+    width: 95%;
+    height: 90%;
+
+    .mat-mdc-card {
+      padding: 15px 15px 10px;
     }
 
-    .tooltip-anchor {
-      fill: rgb(146, 146, 146);
-    }
-
-    .force-directed-graph {
-      .edge {
-        stroke: var(--mdc-outlined-text-field-input-text-color);
-      }
-    }
-
-    .number-card {
-      p {
-        color: var(--mdc-outlined-text-field-input-text-color);
-      }
-    }
-
-    .gauge {
-      .background-arc {
-        path {
-          fill: var(--mdc-outlined-text-field-input-text-color);
-        }
-      }
-
-      .gauge-tick {
-        path {
-          stroke: var(--mdc-outlined-text-field-input-text-color);
-        }
-
-        text {
-          fill: var(--mdc-outlined-text-field-input-text-color);
-        }
-      }
-    }
-
-    .linear-gauge {
-      .background-bar {
-        path {
-          fill: var(--mdc-outlined-text-field-input-text-color);
-        }
-      }
-
-      .units {
-        fill: var(--mdc-outlined-text-field-input-text-color);
-      }
+    .mat-mdc-card-header {
+      margin-bottom: 20px;
     }
   }
 }

@@ -1,17 +1,42 @@
-@if (chartData$ | async; as chartData) {
-  <ngx-charts-area-chart
-    scheme="ocean"
-    [results]="chartData$ | async"
-    [showGridLines]="false"
-    [gradient]="true"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [autoScale]="true"
-    [xAxisTickFormatting]="xAxisTickFormatting"
-    [yAxisTickFormatting]="yAxisTickFormatting"
-    [xAxis]="xAxis"
-    [yAxis]="yAxis"
-    [timeline]="false"
-    (select)="onSelect($event)">
-  </ngx-charts-area-chart>
+@if (totalValueChart$ | async; as totalValueChart) {
+  @if (totalProfitAndLoss$ | async; as totalProfitAndLoss) {
+    <mat-card appearance="raised">
+      <mat-card-header>
+        <div class="total-profit-and-loss">
+          <mat-card-title
+            >Total value:
+            {{
+              totalValueChart[totalValueChart.length - 1].value_usd
+                | currency: 'USD' : 'symbol-narrow'
+            }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            PnL:
+            {{
+              totalProfitAndLoss.addresses[0].abs_profit_usd
+                | currency: 'USD' : 'symbol-narrow' : '1.0-2'
+            }}
+            ROI: {{ totalProfitAndLoss.addresses[0].roi * 100 | number: '1.1-2' }}%
+          </mat-card-subtitle>
+        </div>
+
+        <mat-button-toggle-group
+          (change)="loadChartData($event.value)"
+          [(ngModel)]="timerange"
+          aria-label="Font Style">
+          <mat-button-toggle [value]="TimeRanges['1day']">24H</mat-button-toggle>
+          <mat-button-toggle [value]="TimeRanges['1week']">1W</mat-button-toggle>
+          <mat-button-toggle [value]="TimeRanges['1month']">1M</mat-button-toggle>
+          <mat-button-toggle [value]="TimeRanges['1year']">1Y</mat-button-toggle>
+          <mat-button-toggle [value]="TimeRanges['3years']">3Y</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-card-header>
+      <mat-card-content>
+        <app-chart
+          [chartData]="chartData$ | async"
+          [duration]="duration$ | async">
+        </app-chart>
+      </mat-card-content>
+    </mat-card>
+  }
 }

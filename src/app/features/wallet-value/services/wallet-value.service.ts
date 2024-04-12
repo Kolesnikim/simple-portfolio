@@ -4,11 +4,12 @@ import { TimeRange } from '../../../core/types/TimeRange';
 import { BehaviorSubject, combineLatest, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TotalValueChartResponse } from '../../../api/portfolio-overview/types/TotalValueChartResponse';
+import { TotalProfitsAndLosses } from '../../../api/portfolio-overview/interfaces/TotalProfitsAndLosses';
 
 @Injectable()
 export class WalletValueService {
   private readonly totalValueChart = new BehaviorSubject<TotalValueChartResponse | null>(null);
-  private readonly totalProfitAndLoss = new BehaviorSubject<unknown | null>(null);
+  private readonly totalProfitAndLoss = new BehaviorSubject<TotalProfitsAndLosses | null>(null);
 
   totalValueChart$ = this.totalValueChart.asObservable();
   totalProfitAndLoss$ = this.totalProfitAndLoss.asObservable();
@@ -18,7 +19,7 @@ export class WalletValueService {
     private destroyRef: DestroyRef
   ) {}
 
-  initChartData(id: string, timerange: TimeRange) {
+  loadChartData(id: string, timerange: TimeRange) {
     combineLatest([
       this.portfolioOverviewApiService.getDataForTotalValueChart({
         addresses: id,
@@ -30,7 +31,7 @@ export class WalletValueService {
       }),
     ])
       .pipe(takeUntilDestroyed(this.destroyRef), tap(console.log))
-      .subscribe(([chartData, total]: [TotalValueChartResponse, unknown]) => {
+      .subscribe(([chartData, total]: [TotalValueChartResponse, TotalProfitsAndLosses]) => {
         this.totalValueChart.next(chartData);
         this.totalProfitAndLoss.next(total);
       });

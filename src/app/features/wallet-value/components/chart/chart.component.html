@@ -1,0 +1,17 @@
+@if (chartData) {
+  <ngx-charts-area-chart
+    scheme="ocean"
+    [results]="chartData"
+    [showGridLines]="false"
+    [gradient]="true"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [autoScale]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [animations]="true"
+    [timeline]="false"
+    [xAxisTickFormatting]="xAxisTickFormatting"
+    [yAxisTickFormatting]="yAxisTickFormatting">
+  </ngx-charts-area-chart>
+}
