@@ -6,6 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import { InfoNotificationService } from '../../core/services/info-notification/info-notification.service';
 import { Router } from '@angular/router';
+import { AddressValidator } from '../../shared/utils/AddressValidator';
 
 @Component({
   selector: 'app-search',
@@ -37,6 +38,26 @@ export class SearchComponent {
   submitForm() {
     const { walletId } = this.searchForm.value;
 
-    this.router.navigateByUrl(`/wallet/${walletId}`);
+    if (this.isValidAddress(walletId)) this.router.navigateByUrl(`/wallet/${walletId}`);
+  }
+
+  private isValidAddress(walletId?: string | null) {
+    if (!AddressValidator.isValidWalletAddress(walletId)) {
+      this.notificator.showNotification(
+        'Entered address is invalid. Please, provide the valid address'
+      );
+
+      return false;
+    }
+
+    if (!AddressValidator.isNotEmpty(walletId)) {
+      this.notificator.showNotification(
+        'You provided an empty value. Please, provide the valid address'
+      );
+
+      return false;
+    }
+
+    return true;
   }
 }

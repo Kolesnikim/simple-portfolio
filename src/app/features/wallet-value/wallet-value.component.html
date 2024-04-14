@@ -1,52 +1,60 @@
 @if (totalValueChart$ | async; as totalValueChart) {
   @if (totalProfitAndLoss$ | async; as totalProfitAndLoss) {
-    <mat-card appearance="raised">
-      <mat-card-header>
-        <div class="total-profit-and-loss">
-          <mat-card-title
-            >Total value:
-            {{
-              totalValueChart[totalValueChart.length - 1].value_usd
-                | currency: 'USD' : 'symbol-narrow'
-            }}
-          </mat-card-title>
-          <mat-card-subtitle>
-            PnL:
+    @if (totalValueChart.length) {
+      <mat-card appearance="raised">
+        <mat-card-header>
+          <div class="total-profit-and-loss">
+            <mat-card-title
+              >Total value:
+              {{
+                totalValueChart[totalValueChart.length - 1].value_usd
+                  | currency: 'USD' : 'symbol-narrow'
+              }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              PnL:
 
-            <span
-              appHighlightProfitLoss
-              [innerText]="
-                totalProfitAndLoss.addresses[0].abs_profit_usd
-                  | currency: 'USD' : 'symbol-narrow' : '1.0-2'
-              ">
-            </span>
+              <span
+                appHighlightProfitLoss
+                [innerText]="
+                  totalProfitAndLoss.addresses[0].abs_profit_usd
+                    | currency: 'USD' : 'symbol-narrow' : '1.0-2'
+                ">
+              </span>
 
-            ROI:
-            <span
-              appHighlightProfitLoss
-              [innerText]="totalProfitAndLoss.addresses[0].roi * 100 | number: '1.1-2'">
-            </span>
-            %
-          </mat-card-subtitle>
-        </div>
+              ROI:
+              <span
+                appHighlightProfitLoss
+                [innerText]="totalProfitAndLoss.addresses[0].roi * 100 | number: '1.1-2'">
+              </span>
+              %
+            </mat-card-subtitle>
+          </div>
 
-        <mat-button-toggle-group
-          (change)="loadChartData($event.value)"
-          [(ngModel)]="timerange"
-          aria-label="Font Style">
-          <mat-button-toggle [value]="TimeRanges['1day']">24H</mat-button-toggle>
-          <mat-button-toggle [value]="TimeRanges['1week']">1W</mat-button-toggle>
-          <mat-button-toggle [value]="TimeRanges['1month']">1M</mat-button-toggle>
-          <mat-button-toggle [value]="TimeRanges['1year']">1Y</mat-button-toggle>
-          <mat-button-toggle [value]="TimeRanges['3years']">3Y</mat-button-toggle>
-        </mat-button-toggle-group>
-      </mat-card-header>
-      <mat-card-content>
-        <app-chart
-          [chartData]="chartData$ | async"
-          [duration]="duration$ | async">
-        </app-chart>
-      </mat-card-content>
-    </mat-card>
+          <mat-button-toggle-group
+            (change)="loadChartData($event.value)"
+            [(ngModel)]="timerange">
+            <mat-button-toggle [value]="TimeRanges['1day']">24H</mat-button-toggle>
+            <mat-button-toggle [value]="TimeRanges['1week']">1W</mat-button-toggle>
+            <mat-button-toggle [value]="TimeRanges['1month']">1M</mat-button-toggle>
+            <mat-button-toggle [value]="TimeRanges['1year']">1Y</mat-button-toggle>
+            <mat-button-toggle [value]="TimeRanges['3years']">3Y</mat-button-toggle>
+          </mat-button-toggle-group>
+        </mat-card-header>
+        <mat-card-content>
+          <app-chart
+            [chartData]="chartData$ | async"
+            [duration]="duration$ | async">
+          </app-chart>
+        </mat-card-content>
+      </mat-card>
+    } @else {
+      <mat-card appearance="raised">
+        <mat-card-content class="total-profit-and-loss--empty">
+          <mat-icon>search</mat-icon>
+          Activity not found for: {{ currentWalletAddress | addressEllipsis }} :(
+        </mat-card-content>
+      </mat-card>
+    }
   }
 }

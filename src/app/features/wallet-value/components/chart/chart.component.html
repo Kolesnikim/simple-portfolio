@@ -13,5 +13,11 @@
     [timeline]="false"
     [xAxisTickFormatting]="xAxisTickFormatting"
     [yAxisTickFormatting]="yAxisTickFormatting">
+    <ng-template
+      #tooltipTemplate
+      let-model="model">
+      <p>{{ model.name | date: 'hh:mm, dd MMM YYYY' }}</p>
+      <p>{{ model.value | currency: 'USD' : 'symbol-narrow' : '1.0-2' }}</p>
+    </ng-template>
   </ngx-charts-area-chart>
 }

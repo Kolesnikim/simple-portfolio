@@ -19,6 +19,9 @@ import { FormsModule } from '@angular/forms';
 import { TimeRanges } from '../../core/types/TimeRange';
 import { TotalProfitsAndLosses } from '../../api/portfolio-overview/interfaces/TotalProfitsAndLosses';
 import { HighlightProfitLossDirective } from '../../shared/directives/highlight-profit-loss.directive';
+import { AddressEllipsisPipe } from '../../shared/pipes/address-ellipsis.pipe';
+import { MatIcon } from '@angular/material/icon';
+import { ChartSeries } from '../../core/types/ChartSeries';
 
 @Component({
   selector: 'app-wallet-value',
@@ -38,6 +41,8 @@ import { HighlightProfitLossDirective } from '../../shared/directives/highlight-
     CurrencyPipe,
     DecimalPipe,
     HighlightProfitLossDirective,
+    AddressEllipsisPipe,
+    MatIcon,
   ],
   providers: [WalletValueService, ChartDataService],
   templateUrl: './wallet-value.component.html',
@@ -48,14 +53,13 @@ export class WalletValueComponent implements OnInit {
   protected readonly TimeRanges = TimeRanges;
 
   totalValueChart$?: Observable<TotalValueChartResponse | null>;
-
   totalProfitAndLoss$?: Observable<TotalProfitsAndLosses | null>;
 
-  chartData$?: Observable<unknown>;
-
+  chartData$?: Observable<ChartSeries | null>;
   duration$?: Observable<Duration | null>;
 
   timerange: TimeRanges = TimeRanges['1year'];
+  currentWalletAddress?: string;
 
   constructor(
     private walletValueService: WalletValueService,
@@ -79,5 +83,7 @@ export class WalletValueComponent implements OnInit {
 
     this.chartData$ = this.chartDataService.chartData$;
     this.duration$ = this.chartDataService.duration$;
+
+    this.currentWalletAddress = this.route.snapshot.params['id'];
   }
 }

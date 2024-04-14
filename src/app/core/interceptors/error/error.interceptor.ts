@@ -25,11 +25,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             return ErrorInterceptor.throw(error.message, String(err.status));
           }
 
-          if (error.error_description) {
-            this.infoNotification.showNotification(error.error_description);
-            return this.throwGrantError(error, err.status);
-          }
-
           if (error.error) {
             this.infoNotification.showNotification(error.error);
             return ErrorInterceptor.throw(error.error);
@@ -48,16 +43,5 @@ export class ErrorInterceptor implements HttpInterceptor {
     const error = new Error(message);
     error.name = code || 'BackendError';
     return throwError(error);
-  }
-
-  private throwGrantError(err: any, status: number): Observable<never> {
-    if (err.error === 'invalid_grant' && status === 401) {
-      this.clearUserData();
-    }
-    return ErrorInterceptor.throw(err.error_description, String(status));
-  }
-
-  private clearUserData(): void {
-    sessionStorage.clear();
   }
 }

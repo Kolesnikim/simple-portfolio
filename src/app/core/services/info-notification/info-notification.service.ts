@@ -7,6 +7,9 @@ export class InfoNotificationService {
   constructor(private _snackBar: MatSnackBar) {}
 
   showNotification(message: string) {
-    this._snackBar.open(message, 'Cancel');
+    this._snackBar.open(message, 'Cancel', {
+      duration: 3000,
+      panelClass: ['alert-snackbar'],
+    });
   }
 }

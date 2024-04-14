@@ -2,8 +2,20 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h1 {
+    font-family: sans-serif;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 64px;
+    margin-bottom: 60px;
+    text-align: center;
+    color: var(--mdc-outlined-text-field-input-text-color);
+  }
 
   .search-form {
     width: 60%;
@@ -21,5 +33,36 @@
 
   .mdc-button {
     height: 100%;
+  }
+
+  @media screen and (max-width: 991px) {
+    h1 {
+      font-size: 42px;
+      line-height: 1.1px;
+    }
+
+    .search-form {
+      width: 80%;
+
+      mat-form-field {
+        width: 90%;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    .search-form {
+      width: 90%;
+
+      mat-form-field {
+        width: 100%;
+        margin-right: 10px;
+      }
+    }
   }
 }

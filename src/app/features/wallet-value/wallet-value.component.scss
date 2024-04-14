@@ -9,11 +9,34 @@
   .mat-mdc-card-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin: 10px 40px 40px;
+
+    &::ng-deep .mat-mdc-card-header-text{
+      display: none;
+    }
   }
 
   .total-profit-and-loss {
     color: var(--mdc-outlined-text-field-input-text-color);
+
+
+
+    &--empty {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      font-size: 28px;
+      font-weight: 500;
+      text-align: center;
+      color: var(--mdc-outlined-text-field-input-text-color);
+
+      .mat-icon {
+        transform: scale(4);
+        margin-bottom: 50px;
+      }
+    }
   }
 
   @media screen and (max-width: 991px) {
@@ -25,6 +48,22 @@
     }
 
     .mat-mdc-card-header {
+      margin: 10px 30px 20px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .mat-mdc-card-header {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .mat-mdc-card {
+      padding: 10px;
+    }
+
+    .total-profit-and-loss {
       margin-bottom: 20px;
     }
   }

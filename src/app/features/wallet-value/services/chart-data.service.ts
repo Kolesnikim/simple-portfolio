@@ -5,10 +5,11 @@ import { TotalValueChartResponse } from '../../../api/portfolio-overview/types/T
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Duration } from 'dayjs/plugin/duration';
 import dayjs from 'dayjs';
+import { ChartSeries } from '../../../core/types/ChartSeries';
 
 @Injectable()
 export class ChartDataService {
-  private readonly chartData = new BehaviorSubject<unknown | null>(null);
+  private readonly chartData = new BehaviorSubject<ChartSeries | null>(null);
   private readonly duration = new BehaviorSubject<Duration | null>(null);
 
   chartData$ = this.chartData.asObservable();
@@ -32,7 +33,7 @@ export class ChartDataService {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(chartData => {
-        const rawChartData = [
+        const rawChartData: ChartSeries = [
           {
             name: 'Total Value',
             series: chartData?.map(data => {
