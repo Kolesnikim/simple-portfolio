@@ -18,6 +18,7 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
 import { FormsModule } from '@angular/forms';
 import { TimeRanges } from '../../core/types/TimeRange';
 import { TotalProfitsAndLosses } from '../../api/portfolio-overview/interfaces/TotalProfitsAndLosses';
+import { HighlightProfitLossDirective } from '../../shared/directives/highlight-profit-loss.directive';
 
 @Component({
   selector: 'app-wallet-value',
@@ -36,6 +37,7 @@ import { TotalProfitsAndLosses } from '../../api/portfolio-overview/interfaces/T
     FormsModule,
     CurrencyPipe,
     DecimalPipe,
+    HighlightProfitLossDirective,
   ],
   providers: [WalletValueService, ChartDataService],
   templateUrl: './wallet-value.component.html',

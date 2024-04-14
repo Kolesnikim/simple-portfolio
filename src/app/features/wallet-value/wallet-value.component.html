@@ -12,11 +12,21 @@
           </mat-card-title>
           <mat-card-subtitle>
             PnL:
-            {{
-              totalProfitAndLoss.addresses[0].abs_profit_usd
-                | currency: 'USD' : 'symbol-narrow' : '1.0-2'
-            }}
-            ROI: {{ totalProfitAndLoss.addresses[0].roi * 100 | number: '1.1-2' }}%
+
+            <span
+              appHighlightProfitLoss
+              [innerText]="
+                totalProfitAndLoss.addresses[0].abs_profit_usd
+                  | currency: 'USD' : 'symbol-narrow' : '1.0-2'
+              ">
+            </span>
+
+            ROI:
+            <span
+              appHighlightProfitLoss
+              [innerText]="totalProfitAndLoss.addresses[0].roi * 100 | number: '1.1-2'">
+            </span>
+            %
           </mat-card-subtitle>
         </div>
 
